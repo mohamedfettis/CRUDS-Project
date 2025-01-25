@@ -1,0 +1,190 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Roboto Mono", serif;
+    background-color: #222;
+    color: #fff;
+}
+/* ------------------CRUDS-CONTAINER----------------- */ 
+.cruds-container{
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+
+/* -----------------HEADER----------------- */
+.cruds-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+}
+.cruds-header h1{
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: alternate;
+    letter-spacing: 4px;
+
+}
+.cruds-header h2{
+    font-size: 0.7rem;
+    font-weight: normal;
+    letter-spacing: 3px;
+
+}
+#logo {
+    width: 130px;
+    height: 130px;
+    display: block;
+}
+
+
+/* -----------INPUTS---------------- */
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid transparent; /* Bordure transparente par défaut */
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.5s ease-in-out; /* Transition sur la couleur de bordure */
+}
+
+input:focus {
+    border-color: #fff; /* Seule la couleur change */
+}
+
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#total {
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #f00;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin: 8px ;
+
+}
+#total::before {
+    content: "Total: ";
+}
+
+button {
+    font-size: 0.7rem;
+    width: 100%;
+    padding: 7px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: #165c21;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease-in-out , border-color 0.3s ease-in-out , letter-spacing 0.3s ease-in-out;
+}
+button:hover {
+    background-color: #001d0b;
+    color: #ffffff;
+    border-color: #fff;
+    letter-spacing: 1px;
+}
+#delete-all-btn{
+    background-color: #f00;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+#delete-all-btn:hover{
+    background-color: #4e0707;
+    
+}
+
+
+
+/* -------------output---------------- */
+.btn-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* -----------------TABLE----------------- */
+table {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+    border-collapse: collapse;
+    
+}
+table th {
+    color: #fff;
+    text-transform: uppercase;
+}
+th,td{
+    padding: 5px;
+}
+/* -------------responsive---------------- */
+@media screen and (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    .cruds-container {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+    }
+    .cruds-header{
+        text-align: center
+    }
+    .price{
+        flex-direction: column;
+    }
+
+}
+
+/* -----------------SCROLLBAR----------------- */
+table::-webkit-scrollbar {
+    height: 7px;
+    width: 7px;
+    border-radius: 10px;
+}
+table::-webkit-scrollbar-thumb {
+    background-color: #1b1919;
+    border-radius: 5px;
+}
+table::-webkit-scrollbar-track {
+    background-color: #333;
+}
+body::-webkit-scrollbar {
+    width: 15px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #1b1919;
+    border-radius: 5px;
+}
+body::-webkit-scrollbar-track {
+    background-color: #333;
+}
