@@ -151,10 +151,15 @@ table {
 table th {
     color: #fff;
     text-transform: uppercase;
+    background-color: #333;
+    font-size: smaller;
+    border-bottom: #fff 1px solid;
 }
 th,td{
     padding: 5px;
+
 }
+
 /* -------------responsive---------------- */
 @media screen and (max-width: 768px) {
     table {
