@@ -49,25 +49,43 @@ submitButton.onclick = function() {
         category : categoryInput.value,
         count : countInput.value, 
     };
-    if (mood === "create"){
-        if ( newProduct.count >1){
-            for (let i = 0 ; i < newProduct.count; i++){
+    if (titleInput.value !=='' && priceInput.value !==''){
+        if (mood === "create"){
+            if ( newProduct.count >1){
+                for (let i = 0 ; i < newProduct.count; i++){
+                    dataProduct.push(newProduct);
+                    
+                }
+            }else{
                 dataProduct.push(newProduct);
-                
             }
-        }else{
-            dataProduct.push(newProduct);
+    
+        }else {
+            dataProduct[temp] = newProduct;
+            mood = 'create';
+            submitButton.innerHTML = 'Submit';
+            submitButton.style.backgroundColor = '#165c21';
+            countInput.style.display = 'block';
+    
+    
         }
-
-    }else {
-        dataProduct[temp] = newProduct;
-        mood = 'create';
-        submitButton.innerHTML = 'Submit';
-        submitButton.style.backgroundColor = '#165c21';
-        countInput.style.display = 'block';
-
-
-    }
+    }else{
+            let errorText = document.getElementById('error-text');
+            if (errorText) {
+            errorText.style.transition = 'opacity 0.5s ease';
+            errorText.style.opacity = '1';
+            errorText.innerText = 'Please fill the title and price';
+            setTimeout(() => {
+                errorText.style.opacity = '0';
+                setTimeout(() => {
+                errorText.innerText = '';
+                }, 500);
+            }, 3000);
+            } else {
+            console.error('Element with id "error-text" not found.');
+            }
+        }
+    
    
     
     
@@ -94,25 +112,25 @@ function clearInput() {
 function showData() {
     calculateTotal();
     const tableHtml = document.getElementById('t-body');
-    let tableContent = ''; // Initialize an empty string to hold table rows
-    let index = 0; // Index variable to track the row number
+    let tableContent = ''; 
 
-    for (let i of dataProduct) {
+    for (let i =0 ;i<dataProduct.length;i++) {
         tableContent += `
          <tr>
-             <td>${index}</td> <!-- Afficher l'index ici -->
-             <td>${i.title}</td>
-             <td>${i.price}</td>
-             <td>${i.taxes}</td>
-             <td>${i.ads}</td>
-             <td>${i.discount}</td>
-             <td>${i.total}</td>
-             <td>${i.category}</td>
-             <td><button onclick="updateData(${index})" id="update-btn">update</button></td>
-             <td><button onclick='deleteData(${index})' id="delete-btn">delete</button></td>
+            <td>${i}</td> 
+            <td>${dataProduct[i].title}</td>
+
+            <td>${dataProduct[i].price}</td>
+            <td>${dataProduct[i].taxes}</td>
+            <td>${dataProduct[i].ads}</td>
+            <td>${dataProduct[i].discount}</td>
+            <td>${dataProduct[i].total}</td>
+            <td>${dataProduct[i].category}</td>
+            <td><button onclick="updateData(${i})" id="update-btn">update</button></td>
+            <td><button onclick='deleteData(${i})' id="delete-btn">delete</button></td>   
          </tr>
+         
         `;
-        index++;
     }
     tableHtml.innerHTML = tableContent; 
     let deleteAll = document.getElementById('delete-all');
@@ -168,4 +186,74 @@ function updateData(id) {
 
 
   
+}
+
+
+// search 
+let searchMood = 'title';
+
+function searchById (id){
+    let search = document.getElementById("search");
+    if (id === 'search-title'){
+        searchMood = 'title';
+        search.placeholder = 'Search by title';
+    }else {
+        searchMood = 'category';
+        search.placeholder = 'Search by category';
+    }
+    search.focus();
+    search.value = '';
+    showData();
+    
+}
+
+function searchData (value){
+    let tableContent = '';
+    if (searchMood === 'title'){
+
+        for (let i =0 ;i<dataProduct.length;i++){
+            if (dataProduct[i].title.toLowerCase().includes(value.toLowerCase())){
+
+                tableContent += `
+                <tr>
+                    <td>${i}</td> 
+                    <td>${dataProduct[i].title}</td>
+                    <td>${dataProduct[i].price}</td>
+                    <td>${dataProduct[i].taxes}</td>
+                    <td>${dataProduct[i].ads}</td>
+                    <td>${dataProduct[i].discount}</td>
+                    <td>${dataProduct[i].total}</td>
+                    <td>${dataProduct[i].category}</td>
+                    <td><button onclick="updateData(${i})" id="update-btn">update</button></td>
+                    <td><button onclick='deleteData(${i})' id="delete-btn">delete</button></td>
+                </tr>
+               `;
+
+            }
+        }
+       
+    }else{
+        for (let i =0 ;i<dataProduct.length;i++){
+            if (dataProduct[i].category.toLowerCase().includes(value.toLowerCase())){
+
+                tableContent += `
+                <tr>
+                    <td>${i}</td> 
+                    <td>${dataProduct[i].title}</td>
+                    <td>${dataProduct[i].price}</td>
+                    <td>${dataProduct[i].taxes}</td>
+                    <td>${dataProduct[i].ads}</td>
+                    <td>${dataProduct[i].discount}</td>
+                    <td>${dataProduct[i].total}</td>
+                    <td>${dataProduct[i].category}</td>
+                    <td><button onclick="updateData(${i})" id="update-btn">update</button></td>
+                    <td><button onclick='deleteData(${i})' id="delete-btn">delete</button></td>
+                </tr>
+               `;
+
+            }
+        }
+    }
+    document.getElementById('t-body').innerHTML = tableContent;
+
 }

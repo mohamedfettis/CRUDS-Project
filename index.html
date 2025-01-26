@@ -31,15 +31,18 @@
             <input type="number" id="count" placeholder="Enter the count">
             <input type="text" id="category" placeholder="Enter the category">
             <button type="submit" id="submit">submit</button>
+            
+            <p id="error-text"> </p>
+            
         </div>
 
 
         <div class="cruds-output">
             <div class="search-block">
-                <input type="text" id="search" placeholder="Search">
+                <input onkeyup=" searchData (this.value)" type="text" id="search" placeholder="Search">
                 <div class="btn-search">
-                    <button id="search-title"> Search By Title</button>
-                    <button id="search-category"> Search By Category</button>
+                    <button onclick="searchById(this.id)" id="search-title"> Search By Title</button>
+                    <button onclick="searchById(this.id)" id="search-category"> Search By Category</button>
 
                 </div>
             </div>

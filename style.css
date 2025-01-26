@@ -111,6 +111,14 @@ button:hover {
     border-color: #fff;
     letter-spacing: 1px;
 }
+#error-text{
+    color: #f00;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+    transition: display 0.3s ease-in-out;
+}
+
 #delete-all-btn{
     background-color: #f00;
     font-size: 0.7rem;
